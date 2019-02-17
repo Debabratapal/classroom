@@ -1,0 +1,19 @@
+<!-- <app-layout-component></app-layout-component> -->
+<div class="form-section">
+  <img class="avater" src="assets/images.png">
+  <h3>Login Here</h3>
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" formControlName="email" placeholder="Enter Email" />
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" formControlName="password" placeholder="Enter Password" />
+    </div>
+    <div class="form-group">
+      <button type="submit">Login</button>
+    </div>
+  </form> 
+  <a class="signup_link" routerLink="signup">new user? signup now!</a>
+</div>
