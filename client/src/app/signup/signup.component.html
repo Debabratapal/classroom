@@ -1,7 +1,7 @@
 <div class="form-section">
     <img class="avater" src="assets/images.png">
     <h3>Signup Here</h3>
-  <form [formGroup]="signUpForm" (onSubmit)="onSignUp()">
+  <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
     <div class="form-group">
       <label>Name</label>
       <input type="text" formControlName="name" placeholder="Enter Name">
