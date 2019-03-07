@@ -5,16 +5,18 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponentComponent } from './login-component/login-component.component';
-import { LayoutComponentComponent } from './layout-component/layout-component.component';
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponentComponent,
-    LayoutComponentComponent,
-    SignupComponent
+    SignupComponent,
+    LoginComponent,
+    LayoutComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

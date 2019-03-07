@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "author": "\"Monish Das\"",
   "license": "ISC",
@@ -15,5 +15,10 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.0",
     "mongoose": "^5.4.13"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.10"
   }
 }

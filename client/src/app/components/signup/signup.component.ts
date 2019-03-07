@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { SignupService } from './signup.service';
+import { SignupService } from '../../services/signup.service';
+import { Router } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +12,8 @@ import { SignupService } from './signup.service';
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
 
-  constructor(private signup: SignupService) { }
+  constructor(private signup: SignupService,
+              private router: Router) { }
 
   ngOnInit() {
     this.signUpForm = new FormGroup({
@@ -30,6 +33,13 @@ export class SignupComponent implements OnInit {
       password: this.signUpForm.value.password
     }
 
-    this.signup.signup(user)
+    this.signup.signup(user);
+    this.signup.getSignupChange()
+    .subscribe(result => {
+      if(result.status) {
+        console.log("go to login");
+        this.router.navigate([''])
+      }
+    })
   }
 }
