@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 const auth = require('./routes/auth');
+const room = require('./routes/room');
 
 app.use(morgan('dev'))
 app.use(bodyParser.json());
@@ -25,6 +26,7 @@ mongoose.connect('mongodb://localhost:27017/classroom' ,
 
 
 app.use('/api', auth);
+app.use('/api/room', room);
 
 app.listen(3001, () => {
   console.log("server is listening at 3001");

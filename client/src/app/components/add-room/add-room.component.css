@@ -1,0 +1,8 @@
+.update_row {
+  cursor: pointer;
+}
+
+.help-text {
+  font-size: 12px;
+  color: red;
+}

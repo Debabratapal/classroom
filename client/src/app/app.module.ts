@@ -9,14 +9,21 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HomeComponent } from './components/home/home.component';
-
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AddRoomComponent } from './components/add-room/add-room.component';
+import { AddTeamLeaderComponent } from './components/add-team-leader/add-team-leader.component';
+import { BookingViewComponent } from './components/booking-view/booking-view.component';
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
     LoginComponent,
     LayoutComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent,
+    AddRoomComponent,
+    AddTeamLeaderComponent,
+    BookingViewComponent
   ],
   imports: [
     BrowserModule,

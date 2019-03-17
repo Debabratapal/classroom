@@ -1,0 +1,26 @@
+<div class="navbar">
+  <div class="container">
+    <div class="nav_header" >
+      <a routerLink='/home'>
+        <h3>Easy Booking</h3>
+      </a>
+    </div>
+    <div 
+    [ngStyle]="{color: open ? 'yellow' : 'white'}"
+    (click)="dashboardClicked()" 
+    class="dashboard">
+      <span>Dashboard</span>
+      <span style="margin-left:10px; font-size:18px">
+        <i *ngIf="open" class="fa fa-sort-up"></i>
+        <i *ngIf="!open" class="fa fa-sort-down"></i>
+      </span>
+    </div>
+    <div class="dashborad_items" 
+    *ngIf="open">
+        <div 
+        class="dashborad_item" 
+        *ngFor="let item of dashboardItems let i=index;"
+        (click)="dashboardItemClicked(i)">{{item.title}}</div>
+      </div>
+  </div>
+</div>

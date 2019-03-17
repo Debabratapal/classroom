@@ -29,13 +29,13 @@ body {
 }
 
 
-.form-group {
+.form_group {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
 
-.form-group input {
+.form_group input {
   align-self: center;
   width: 100%;
   height: 1.8em;
@@ -56,11 +56,11 @@ body {
   transform: translate(-52% ,-49%);
 }
 
-.form-group label {
+.form_group label {
   margin-bottom: 0.5em;
   color: white;
 }
-.form-group button {
+.form_group button {
   margin-top: 20px;
   border:none;
   outline: none;
@@ -74,7 +74,7 @@ body {
 
 }
 
-.form-group button:hover {
+.form_group button:hover {
   background-color: rgb(236, 1, 1);
   transition: 0.3s;
 }
