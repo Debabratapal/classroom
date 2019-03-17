@@ -12,6 +12,12 @@
     <tbody>
       <tr *ngFor="let room of rooms">
         <th>{{room.room_name}}</th>
+        <td 
+          *ngFor="let time of room.booking_times" 
+          [ngStyle]="{backgroundColor: time? 'red':'white'}" 
+          style="color:white">
+          {{time ? 'booked':''}}
+        </td>
       </tr>
     </tbody>
 
