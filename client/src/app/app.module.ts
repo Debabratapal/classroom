@@ -13,6 +13,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AddRoomComponent } from './components/add-room/add-room.component';
 import { AddTeamLeaderComponent } from './components/add-team-leader/add-team-leader.component';
 import { BookingViewComponent } from './components/booking-view/booking-view.component';
+import { NotificationComponent } from './components/notification/notification.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { BookingViewComponent } from './components/booking-view/booking-view.com
     NavbarComponent,
     AddRoomComponent,
     AddTeamLeaderComponent,
-    BookingViewComponent
+    BookingViewComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

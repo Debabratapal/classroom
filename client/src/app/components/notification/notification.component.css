@@ -1,0 +1,39 @@
+.notification {
+  background-color:#030320;
+  color: #fff;
+  width: 33%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  border: 4px solid rgb(2, 2, 54);
+  border-radius: 4px;
+  position: absolute;
+  top:12%;
+  right: 2%;
+  visibility: hidden;
+  animation: come 5s ease-in-out;
+}
+
+.notification p{
+  margin: 0;
+  padding: 0;
+  padding-left: 20px;
+}
+
+@keyframes come {
+  0% {
+    visibility: visible;
+    opacity: 0;
+    transform: translateY(-50px);
+    
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0px);
+  
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
