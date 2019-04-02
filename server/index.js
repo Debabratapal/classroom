@@ -4,9 +4,11 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
+const socket = require('socket.io');
 
 const auth = require('./routes/auth');
 const room = require('./routes/room');
+const booking = require('./routes/booking');
 
 app.use(morgan('dev'))
 app.use(bodyParser.json());
@@ -27,7 +29,9 @@ mongoose.connect('mongodb://localhost:27017/classroom' ,
 
 app.use('/api', auth);
 app.use('/api/room', room);
+app.use('/api/booking', booking);
 
-app.listen(3001, () => {
+const server = app.listen(3001, () => {
   console.log("server is listening at 3001");
 });
+const io = socket.listen(server)

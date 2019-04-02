@@ -1,0 +1,46 @@
+
+
+.form-group {
+  margin-bottom: 0;
+}
+
+table, th, tr, td {
+  border: 1px solid #6b6bfa;
+  text-align: center;
+  max-width: 17.5rem;
+}
+td, th {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-weight: normal;
+  background-color: #fff;
+}
+
+td {
+  cursor: pointer;
+}
+td:hover {
+  border: 2px solid #ccd;
+}
+
+.div-month {
+  width:100%;
+ 
+  background-color: #6d76f0;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  height: 2.5rem;
+  align-items: center;
+}
+
+.div-month .div-month-arrow {
+  font-size:18px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+}
+
+.div-month .div-month-arrow:hover {
+  background-color: #4852db;
+  font-weight: bold;
+}

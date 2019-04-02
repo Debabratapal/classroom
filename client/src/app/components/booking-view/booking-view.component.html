@@ -1,17 +1,20 @@
-<div class="container">
+<div class="container" >
+  <app-room-booking></app-room-booking>
   <div class="container_header">
     <h1>Bookings</h1>
   </div>
   <table class="table">
     <thead>
       <tr>
-        <th></th>
+        <th>
+          <app-calender (date)="onDateChange($event)"></app-calender>
+        </th>
         <th *ngFor="let time of times">{{time}}</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let room of rooms">
-        <th>{{room.room_name}}</th>
+        <th>{{room.room.room_name}}</th>
         <td 
           *ngFor="let time of room.booking_times" 
           [ngStyle]="{backgroundColor: time? 'red':'white'}" 

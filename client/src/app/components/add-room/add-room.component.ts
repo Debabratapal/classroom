@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Room } from '../../models/room.model';
 import { RoomService } from 'src/app/services/room.service';
 import { Subscription } from 'rxjs';
@@ -7,40 +7,52 @@ import { Event } from '@angular/router';
 
 @Component({
   selector: 'app-add-room',
-  templateUrl:'./add-room.component.html',
+  templateUrl: './add-room.component.html',
   styleUrls: ['./add-room.component.css']
 })
-export class AddRoomComponent implements OnInit,OnDestroy {
-  addRoomForm:FormGroup;
+export class AddRoomComponent implements OnInit, OnDestroy {
+  addRoomForm: FormGroup;
   roomListener: Subscription;
   rooms: Room[] = [];
-  header = ['Room Name', 'Capcity', 'Edit', 'Delete'];
-  updateMode:Boolean = false;
-  id:String = '';
-  index:any = null;
-  roomExist:Boolean = false;
+  header = ['Room Name', 'Capcity', 'Edit', 'Delete', 'AC', "Mic", 'Projector', 'WIFI'];
+  updateMode: Boolean = false;
+  id: String = '';
+  index: any = null;
+  roomExist: Boolean = false;
+  features: any[] = ['ac', 'mic', 'projector', 'wifi']
 
-  constructor(private roomService: RoomService) {}
+  constructor(private roomService: RoomService) { }
 
   ngOnInit() {
     this.addRoomForm = new FormGroup({
       'room_name': new FormControl(null, Validators.required),
-      'room_capacity': new FormControl(null, Validators.required)
+      'room_capacity': new FormControl(null, Validators.required),
+      'features': new FormArray([])
     });
+
+    this.addCheckboxes()
     this.roomService.getRoom();
     this.roomListener = this.roomService.getRoomChange()
-    .subscribe(data => {
-      if(this.updateMode) {
-        this.updateMode = false;
-      }
-      this.addRoomForm.reset();
-      this.rooms = data;
-      
-    })
-    
+      .subscribe(data => {
+        if (this.updateMode) {
+          this.updateMode = false;
+        }
+        this.addRoomForm.reset();
+        this.rooms = data;
+
+      })
+
   }
 
-  onDeleteRow(i:any) {
+  addCheckboxes() {
+    this.features.map((el, i) => {
+      const control = new FormControl();
+      (this.addRoomForm.controls.features as FormArray).push(control)
+    })
+
+  }
+
+  onDeleteRow(i: any) {
     let id = this.rooms[i]._id;
     this.roomService.deleteRoom(id, i)
   }
@@ -49,28 +61,43 @@ export class AddRoomComponent implements OnInit,OnDestroy {
     this.roomListener.unsubscribe();
   }
 
-  onUpdateRow(i:any) {
+  onUpdateRow(i: any) {
     this.index = i;
     let row = this.rooms[i];
+    console.log(row);
+    let feature = [];
+    for(let key in row) {
+      if(this.features.includes(key)) {
+        feature.push(row[key])
+      }
+    }
+    
     this.addRoomForm.patchValue({
       'room_name': row.room_name,
-      'room_capacity': row.room_capacity
+      'room_capacity': row.room_capacity,
+      'features': feature,
+
     })
 
     this.updateMode = true;
     this.id = row._id;
   }
 
-  onSubmit()  {
-    
-    let room:Room = {
+  onSubmit() {
+    let room: Room = {
       room_name: this.addRoomForm.value.room_name,
-      room_capacity: this.addRoomForm.value.room_capacity
+      room_capacity: this.addRoomForm.value.room_capacity,
+      ac: this.addRoomForm.value.features[0],
+      mic: this.addRoomForm.value.features[1],
+      projector: this.addRoomForm.value.features[2],
+      wifi: this.addRoomForm.value.features[3],
+
     }
-    if(!room.room_name || !room.room_capacity) {
+
+    if (!room.room_name || !room.room_capacity) {
       return;
     }
-    if(!this.updateMode) {
+    if (!this.updateMode) {
       this.roomService.addRoom(room);
     } else {
       this.roomService.updateRoom(this.id, this.index, room);
@@ -82,7 +109,7 @@ export class AddRoomComponent implements OnInit,OnDestroy {
     console.log(e.target.value);
     let roomName = e.target.value;
     let room = this.rooms.filter(el => el.room_name === roomName);
-    if(room.length>0) {
+    if (room.length > 0) {
       this.roomExist = true;
     } else {
       this.roomExist = false;

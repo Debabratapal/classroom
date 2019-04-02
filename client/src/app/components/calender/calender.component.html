@@ -1,0 +1,26 @@
+<div class="form-group">
+  <input placeholder="Date" (click)="onclickShow()" class="form-control" [value]="showValue"/>
+</div>
+<div *ngIf="show"  @fade style="position: absolute">
+  <div class="div-month">
+    <span class="div-month-arrow" (click)="nextMonth(-1)">
+      < </span> <span>{{month}},{{year}}
+    </span>
+    <span class="div-month-arrow" (click)="nextMonth(1)"> > </span>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let w of weeks">{{w}}</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let chunk of chunkOfDays" [@goLeft]="false" >
+        <td *ngFor="let c of chunk" (click)="dateSelect(c)"
+        [ngStyle]="{backgroundColor:  c.date && !c.past ? 'white': '#f8f8f8'}">
+          {{c.date ? c.date : ''}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

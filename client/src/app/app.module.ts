@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,10 @@ import { AddRoomComponent } from './components/add-room/add-room.component';
 import { AddTeamLeaderComponent } from './components/add-team-leader/add-team-leader.component';
 import { BookingViewComponent } from './components/booking-view/booking-view.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { CalenderComponent } from './components/calender/calender.component';
+import { RoomBookingComponent } from './components/room-booking/room-booking.component';
+import { CardsComponent } from './components/cards/cards.component';
+import { CardComponent } from './components/card/card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,13 +30,18 @@ import { NotificationComponent } from './components/notification/notification.co
     AddRoomComponent,
     AddTeamLeaderComponent,
     BookingViewComponent,
-    NotificationComponent
+    NotificationComponent,
+    CalenderComponent,
+    RoomBookingComponent,
+    CardsComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule  
+    HttpClientModule  ,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

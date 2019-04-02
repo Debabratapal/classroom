@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { timeout } from 'q';
+import { Subscription } from 'rxjs';
+import { BookngService } from 'src/app/services/booking.service';
 
 @Component({
   selector: 'app-booking-view',
@@ -8,35 +10,32 @@ import { timeout } from 'q';
 })
 export class BookingViewComponent implements OnInit {
   times = [];
+  show:Boolean;
 
-  rooms:any = [
-    {
-      room_name: "room_1",
-      booking_times: [10,11, 14,16]
-    },
-    {
-      room_name: "room_16",
-      booking_times: [10,11, ,16, 18]
-    },
-    {
-      room_name: "room_14",
-      booking_times: [10,11, 15,16]
-    },
-    {
-      room_name: "room_16",
-      booking_times: [10,11, 15,16]
-    },
-    {
-      room_name: "room_431",
-      booking_times: [10,11, 20,16]
-    },
-  ]
-  constructor() { }
+  bookingChangeListener:Subscription;
+
+  rooms:any = []
+  constructor(private bookingService: BookngService) { }
 
   ngOnInit() {
+    this.getHeader()
+    this.bookingService.getBookingTable();
+    this.bookingChangeListener = this.bookingService.getBookingChange()
+    .subscribe(data => {
+      this.rooms = data;
+      this.makeRoomForUI()
+    })
+
+    
+  }
+
+  getHeader() {
     for(let i=10; i<21; i++) {
       this.times.push(`${i}:00`);
     }
+  }
+  makeRoomForUI() {
+
     this.rooms.forEach((el, i) => {
       let timings = el.booking_times.sort();
         el.booking_times = [];
@@ -51,7 +50,13 @@ export class BookingViewComponent implements OnInit {
     }) 
    
     console.log(this.rooms);
+  }
+
+  onDateChange(event){
+    console.log(event);
     
   }
+
+ 
 
 }

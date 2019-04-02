@@ -1,13 +1,13 @@
 <div class="container">
-
   <h1 style="margin:50px 0;">Add Rooms</h1>
   <div class="row">
     <div class="col-md-4 col-lg-4 ">
       <h3>Lets Add A room</h3>
-      <form [formGroup]="addRoomForm" (ngSubmit)="onSubmit()" >
+      <form [formGroup]="addRoomForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label>Room Name</label>
-          <input type="text" (change)="onRoomChange($event)" class="form-control" formControlName="room_name" placeholder="Enter Room Name" />
+          <input type="text" (change)="onRoomChange($event)" class="form-control" formControlName="room_name"
+            placeholder="Enter Room Name" />
           <p class="help-text" *ngIf="roomExist">this room is already exist!</p>
         </div>
         <div class="form-group">
@@ -15,37 +15,47 @@
           <input type="number" class="form-control" formControlName="room_capacity" placeholder="Enter Room Capacity" />
         </div>
         <div class="form-group">
-          <button type="submit"
-          [disabled]="!addRoomForm.valid || roomExist"
-          class="btn btn-primary pull-right">{{!updateMode ? 'Submit' : 'Update'}}</button>
+          <label>Features</label>
+          <div class="checkbox" formArrayName="features" *ngFor="let fea of addRoomForm.controls.features.controls; let i = index;">
+            <label>
+              <input type="checkbox" [formControlName]="i">
+              {{features[i]}}
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" [disabled]="!addRoomForm.valid || roomExist" class="btn btn-primary pull-right">{{!updateMode
+            ? 'Submit' : 'Update'}}</button>
         </div>
       </form>
     </div>
     <div class="col-md-8 col-lg-8">
-     <h3>All The Rooms We Have</h3>
-     <div *ngIf="rooms.length===0">
+      <h3>All The Rooms We Have</h3>
+      <div *ngIf="rooms.length===0">
         <div class="jumbotron">
           <p style="text-align:center">We Don't have any rooms!</p>
           <i class="fas fa-sad-tear"></i>
         </div>
-     </div>
-     <table  class="table" *ngIf="rooms.length> 0">
-       <thead>
+      </div>
+      <table class="table" *ngIf="rooms.length> 0">
+        <thead>
           <tr>
-              <th *ngFor="let head of header">{{head}}</th>
+            <th *ngFor="let head of header">{{head}}</th>
           </tr>
-       </thead>
-       <tbody>
-        <tr *ngFor="let row of rooms; let i=index;">
-          <td>{{row.room_name}}</td>
-          <td>{{row.room_capacity}}</td>
-          <td class="update_row"
-          (click)="onUpdateRow(i)"><i class="fa fa-edit"></i></td>
-          <td class="update_row"
-          (click)="onDeleteRow(i)"><i class="fa fa-trash"></i></td>
-        </tr>
-       </tbody>
-     </table>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of rooms; let i=index;">
+            <td>{{row.room_name}}</td>
+            <td>{{row.room_capacity}}</td>
+            <td class="update_row" (click)="onUpdateRow(i)"><i class="fa fa-edit"></i></td>
+            <td class="update_row" (click)="onDeleteRow(i)"><i class="fa fa-trash"></i></td>
+            <td>{{row.ac ? 'Yes': 'No'}}</td>
+            <td>{{row.mic ? 'Yes': 'No'}}</td>
+            <td>{{row.projector ? 'Yes': 'No'}}</td>
+            <td>{{row.wifi ? 'Yes': 'No'}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
