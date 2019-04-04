@@ -19,6 +19,8 @@ import { CalenderComponent } from './components/calender/calender.component';
 import { RoomBookingComponent } from './components/room-booking/room-booking.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { CardComponent } from './components/card/card.component';
+import { EnqueryComponent } from './components/enquery/enquery.component';
+import { BookingModalComponent } from './components/booking-modal/booking-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,9 @@ import { CardComponent } from './components/card/card.component';
     CalenderComponent,
     RoomBookingComponent,
     CardsComponent,
-    CardComponent
+    CardComponent,
+    EnqueryComponent,
+    BookingModalComponent
   ],
   imports: [
     BrowserModule,

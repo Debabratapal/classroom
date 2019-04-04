@@ -44,3 +44,24 @@ td:hover {
   background-color: #4852db;
   font-weight: bold;
 }
+
+.readmore {
+  width:45px;
+  height: 20px;
+  border: 1px solid #ccd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.readmore-item {
+  width:10px;
+  height: 10px;
+  border:1px solid #ccd;
+  border-radius: 50%;
+}
+
+.text {
+  font-family: fantasy, sans-serif ;
+}
+

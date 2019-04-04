@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { BookngService } from 'src/app/services/booking.service';
 
 @Component({
   selector: 'app-room-booking',
@@ -9,8 +10,10 @@ import { FormGroup, FormControl, FormArray } from '@angular/forms';
 export class RoomBookingComponent implements OnInit {
   enquiryForm: FormGroup;
   times = []
-  features: any[] = ['ac', 'mic', 'projector', 'wifi']
-  constructor() { }
+  features: any[] = ['ac', 'mic', 'projector', 'wifi'];
+  time = null;
+  
+  constructor(private bookingService: BookngService) { }
 
   ngOnInit() {
 
@@ -38,9 +41,29 @@ export class RoomBookingComponent implements OnInit {
 
   }
 
+  selectedTime(event) {
+    console.log(event);
+    this.time=+event;
+  }
 
   onSubmit() {
-    console.log(this.enquiryForm);
-    
+    console.log(this.enquiryForm.value);
+
+    let allFeatures = this.enquiryForm.value.features;
+    let features = []
+    for(var i = 0; i<allFeatures.length; i++) {
+      if(allFeatures[i] === true) {
+        features.push(this.features[i]);
+      }
+    }
+
+    let data = {
+      room_capacity: this.enquiryForm.value.capacity,
+      features,
+      time: this.time
+    }
+
+    console.log(data);
+    this.bookingService.getEnqueryTable(data);
   }
 }

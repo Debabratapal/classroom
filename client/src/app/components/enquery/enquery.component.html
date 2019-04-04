@@ -1,0 +1,34 @@
+<ng-template *ngIf="rooms.length>0; then data else noData "></ng-template>
+
+<ng-template #noData>
+  <p>Please Search</p>
+</ng-template>
+<ng-template #data>
+    <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th *ngFor="let time of times">{{time}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let room of rooms">
+              <th>{{room.room.room_name}}</th>
+              <td 
+                *ngFor="let time of room.booking_times; let i=index;" 
+                [ngStyle]="{backgroundColor: time? 'red':'white'}" 
+                style="color:white"
+                (click)="boxClicked(time, i, room.booking_times, room.room)">
+                {{time ? 'booked':''}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</ng-template>
+
+<app-booking-modal 
+[show]="show" 
+[roomId]="roomId"
+[date]="date"></app-booking-modal>
