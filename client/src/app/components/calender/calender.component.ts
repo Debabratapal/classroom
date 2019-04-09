@@ -60,10 +60,9 @@ export class CalenderComponent implements OnInit {
     
   }
   emitCurrentDate() {
-    console.log("hi emit");
     const d = new Date();
-    d.setHours(23);
-    d.setMinutes(59);
+    d.setHours(0);
+    d.setMinutes(0);
     this.showValue=`${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;
     this.selectedDate.emit(d.getTime())
   }

@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class EnqueryComponent implements OnInit {
   bookingChange:Subscription;
+ 
   rooms = [];
   times = [];
   @Input() date ;
@@ -58,10 +59,10 @@ export class EnqueryComponent implements OnInit {
     }
     console.log(room,roomTimes, i);
     console.log("good to go");
+   this.bookingService.timeTransfer(roomTimes);
     this.show = true;
     this.roomId = room._id;
     console.log(this.roomId);
-    
   }
 
 

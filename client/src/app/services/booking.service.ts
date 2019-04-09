@@ -13,6 +13,9 @@ export class BookngService {
   enquiry = [];
   enquiryChange = new Subject();
 
+  time = [];
+  timeChange = new Subject()
+
   constructor(private http: HttpClient) {}
 
   getBookingChange() {
@@ -23,8 +26,8 @@ export class BookngService {
     return this.enquiryChange.asObservable();
   }
 
-  getBookingTable() {
-    this.http.get<any[]>(`${baseUrl}/api/booking`) 
+  getBookingTable(start) {
+    this.http.get<any[]>(`${baseUrl}/api/booking?start=${start}`) 
     .subscribe(data => {
       this.bookings = data;
       this.bookingChange.next(this.bookings)
@@ -45,5 +48,14 @@ export class BookngService {
       console.log(data);
       
     })
+  }
+
+  timeTransfer(time) {
+    this.time = time;
+    this.timeChange.next(this.time)
+  }
+
+  getTimeChange() {
+    return this.timeChange.asObservable();
   }
 }

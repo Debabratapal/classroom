@@ -19,7 +19,7 @@ export class BookingViewComponent implements OnInit {
 
   ngOnInit() {
     this.getHeader()
-    this.bookingService.getBookingTable();
+   
     this.bookingChangeListener = this.bookingService.getBookingChange()
     .subscribe(data => {
       this.rooms = data;
@@ -54,7 +54,7 @@ export class BookingViewComponent implements OnInit {
 
   onDateChange(event){
     console.log(event);
-    
+    this.bookingService.getBookingTable(event);
   }
 
  
