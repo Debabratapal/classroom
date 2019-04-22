@@ -9,6 +9,9 @@ const roomSchema = new Schema({
   room_capacity: {
     type: Number,
   },
+  floor: {
+    type: Number,
+  },
   ac: {
     type:Boolean,
     default: false,

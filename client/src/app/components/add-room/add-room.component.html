@@ -15,6 +15,10 @@
           <input type="number" class="form-control" formControlName="room_capacity" placeholder="Enter Room Capacity" />
         </div>
         <div class="form-group">
+            <label>Floor Number</label>
+            <input type="number" class="form-control" formControlName="floor" placeholder="Enter Floor" />
+          </div>
+        <div class="form-group">
           <label>Features</label>
           <div class="checkbox" formArrayName="features" *ngFor="let fea of addRoomForm.controls.features.controls; let i = index;">
             <label>
@@ -24,9 +28,21 @@
           </div>
         </div>
         <div class="form-group">
-          <button type="submit" [disabled]="!addRoomForm.valid || roomExist" class="btn btn-primary pull-right">{{!updateMode
-            ? 'Submit' : 'Update'}}</button>
+            <div class="map">
+              <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
+                <agm-marker [latitude]="lat" [longitude]="lng">
+                  <agm-info-window>Parasmane Apertment</agm-info-window>
+                </agm-marker>
+              </agm-map>
+            </div>
+          </div>
+        <div class="form-group">
+          <button type="submit" [disabled]="!addRoomForm.valid || roomExist" class="btn btn-primary pull-right">
+            {{!updateMode? 'Submit' : 'Update'}}
+          </button>
         </div>
+       
+      
       </form>
     </div>
     <div class="col-md-8 col-lg-8">
@@ -53,6 +69,7 @@
             <td>{{row.mic ? 'Yes': 'No'}}</td>
             <td>{{row.projector ? 'Yes': 'No'}}</td>
             <td>{{row.wifi ? 'Yes': 'No'}}</td>
+            <td>{{row.floor}}</td>
           </tr>
         </tbody>
       </table>

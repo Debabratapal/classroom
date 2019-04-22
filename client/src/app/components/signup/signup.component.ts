@@ -37,7 +37,6 @@ export class SignupComponent implements OnInit {
     this.signup.getSignupChange()
     .subscribe(result => {
       if(result.status) {
-        console.log("go to login");
         this.router.navigate([''])
       }
     })

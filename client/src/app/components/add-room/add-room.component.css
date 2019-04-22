@@ -6,3 +6,11 @@
   font-size: 12px;
   color: red;
 }
+
+.map{
+  height: 300px;
+}
+
+agm-map {
+  height: 100%;
+}

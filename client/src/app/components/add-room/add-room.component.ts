@@ -14,20 +14,24 @@ export class AddRoomComponent implements OnInit, OnDestroy {
   addRoomForm: FormGroup;
   roomListener: Subscription;
   rooms: Room[] = [];
-  header = ['Room Name', 'Capcity', 'Edit', 'Delete', 'AC', "Mic", 'Projector', 'WIFI'];
+  header = ['Room Name', 'Capcity', 'Edit', 'Delete', 'AC', "Mic", 'Projector', 'WIFI','Floor'];
   updateMode: Boolean = false;
   id: String = '';
   index: any = null;
   roomExist: Boolean = false;
-  features: any[] = ['ac', 'mic', 'projector', 'wifi']
-
+  features: any[] = ['ac', 'mic', 'projector', 'wifi'];
+  location=[];
+  lat:number=12.924260;
+  lng:number=77.491340;
   constructor(private roomService: RoomService) { }
 
   ngOnInit() {
+ 
     this.addRoomForm = new FormGroup({
       'room_name': new FormControl(null, Validators.required),
       'room_capacity': new FormControl(null, Validators.required),
-      'features': new FormArray([])
+      'features': new FormArray([]),
+      'floor': new FormControl(null, Validators.required)
     });
 
     this.addCheckboxes()
@@ -64,7 +68,6 @@ export class AddRoomComponent implements OnInit, OnDestroy {
   onUpdateRow(i: any) {
     this.index = i;
     let row = this.rooms[i];
-    console.log(row);
     let feature = [];
     for(let key in row) {
       if(this.features.includes(key)) {
@@ -87,6 +90,7 @@ export class AddRoomComponent implements OnInit, OnDestroy {
     let room: Room = {
       room_name: this.addRoomForm.value.room_name,
       room_capacity: this.addRoomForm.value.room_capacity,
+      floor: this.addRoomForm.value.floor,
       ac: this.addRoomForm.value.features[0],
       mic: this.addRoomForm.value.features[1],
       projector: this.addRoomForm.value.features[2],

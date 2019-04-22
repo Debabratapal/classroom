@@ -49,6 +49,8 @@ router.post('/login',(req, res) => {
   .then(isMatched => {
     if(isMatched) {
       const obj = {
+        _id: user._id,
+        status: user.status,
         email: user.email,
         name: user.name
       }

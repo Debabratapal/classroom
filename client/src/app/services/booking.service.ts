@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {baseUrl} from '../../environments/environment';
 import { Subject } from 'rxjs';
+import { SignupService } from './signup.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,10 @@ export class BookngService {
   time = [];
   timeChange = new Subject()
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private authService: SignupService
+    ) {}
 
   getBookingChange() {
     return this.bookingChange.asObservable();
@@ -35,6 +39,7 @@ export class BookngService {
   }
 
   getEnqueryTable(data) {
+
     this.http.post<any[]>(`${baseUrl}/api/booking/enquery`, data)
     .subscribe(data => {
       this.enquiry = data;
@@ -43,6 +48,8 @@ export class BookngService {
   }
 
   bookTheRoom(data) {
+    let loggedInUser = this.authService.getUser();
+    data.user_id = loggedInUser._id;
     this.http.post<any[]>(`${baseUrl}/api/booking`,data) 
     .subscribe(data => {
       console.log(data);

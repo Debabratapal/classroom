@@ -1,26 +1,26 @@
 <div class="navbar">
   <div class="container">
-    <div class="nav_header" >
+    <div class="nav_header">
       <a routerLink='/home'>
         <h3>Easy Booking</h3>
       </a>
     </div>
-    <div 
-    [ngStyle]="{color: open ? 'yellow' : 'white'}"
-    (click)="dashboardClicked()" 
-    class="dashboard">
-      <span>Dashboard</span>
-      <span style="margin-left:10px; font-size:18px">
-        <i *ngIf="open" class="fa fa-sort-up"></i>
-        <i *ngIf="!open" class="fa fa-sort-down"></i>
-      </span>
-    </div>
-    <div class="dashborad_items" 
-    *ngIf="open">
-        <div 
-        class="dashborad_item" 
-        *ngFor="let item of dashboardItems let i=index;"
-        (click)="dashboardItemClicked(i)">{{item.title}}</div>
+    <div class="nav_links">
+      <div>
+        <a routerLink="/home" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Home</a>
       </div>
+      <div *ngIf="userStatus==='ADMIN'|| userStatus==='LEADER'">
+        <a routerLink="/home/enquiry" routerLinkActive="active">Enquiry</a>
+      </div>
+      <div *ngIf="userStatus==='ADMIN'">
+        <a routerLink="/home/add_rooms" routerLinkActive="active">Add Room</a>
+      </div>
+      <div *ngIf="userStatus==='ADMIN' || userStatus==='LEADER'">
+        <a routerLink="/home/add_team_leader" routerLinkActive="active">Add Member</a>
+      </div>
+      <div>
+        <a (click)="logout()" style="cursor: pointer"> Logout</a>
+      </div>
+    </div>
   </div>
 </div>

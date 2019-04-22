@@ -1,6 +1,14 @@
-table, td, th {
+.table {
   border: 1px solid black;
-  
+  width: 100%;
+}
+
+.table th,td {
+  border: 1px solid #333;
+}
+
+td {
+  font-size: 12px;
 }
 
 .container_header h1{

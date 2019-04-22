@@ -9,6 +9,7 @@ const socket = require('socket.io');
 const auth = require('./routes/auth');
 const room = require('./routes/room');
 const booking = require('./routes/booking');
+const user = require('./routes/user');
 
 app.use(morgan('dev'))
 app.use(bodyParser.json());
@@ -26,10 +27,11 @@ mongoose.connect('mongodb://localhost:27017/classroom' ,
   console.log("connected to mongodb");
 })
 
-
 app.use('/api', auth);
 app.use('/api/room', room);
 app.use('/api/booking', booking);
+app.use('/api/user', user);
+
 
 const server = app.listen(3001, () => {
   console.log("server is listening at 3001");

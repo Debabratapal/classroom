@@ -17,10 +17,11 @@ import { BookingViewComponent } from './components/booking-view/booking-view.com
 import { NotificationComponent } from './components/notification/notification.component';
 import { CalenderComponent } from './components/calender/calender.component';
 import { RoomBookingComponent } from './components/room-booking/room-booking.component';
-import { CardsComponent } from './components/cards/cards.component';
-import { CardComponent } from './components/card/card.component';
 import { EnqueryComponent } from './components/enquery/enquery.component';
 import { BookingModalComponent } from './components/booking-modal/booking-modal.component';
+
+import { AgmCoreModule } from '@agm/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,10 +36,8 @@ import { BookingModalComponent } from './components/booking-modal/booking-modal.
     NotificationComponent,
     CalenderComponent,
     RoomBookingComponent,
-    CardsComponent,
-    CardComponent,
     EnqueryComponent,
-    BookingModalComponent
+    BookingModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +45,9 @@ import { BookingModalComponent } from './components/booking-modal/booking-modal.
     ReactiveFormsModule,
     HttpClientModule  ,
     BrowserAnimationsModule,
+    AgmCoreModule.forRoot({
+      apiKey:'AIzaSyDniRorRUp9KaKgvH_hgXaRP0sr3xOSIIU'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

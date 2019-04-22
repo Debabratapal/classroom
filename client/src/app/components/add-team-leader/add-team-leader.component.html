@@ -1,3 +1,51 @@
 <div class="container">
-  <h1>Add Team Leader</h1>
+  <div class="container-header">
+    <h1>Add Team Leader</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <ul class="list-group">
+        <li class="list-group-item list" *ngFor="let link of sideList; let i = index;" (click)="changeNav(link.id, i)">
+          {{link.title}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-8">
+      <div *ngIf="selectedNav.id===1">
+        <div *ngIf="!newUser.length">
+          <p style="text-align: center">No New Request</p>
+        </div>
+        <div *ngFor="let user of newUser; let i = index;" class="user-list">
+          <span>
+            {{user.name}}
+          </span>
+          <span>
+            {{user.email}}
+          </span>
+          <span>
+            <button (click)="addToGroup(user, i)" class="btn btn-primary pull-right">Add To Group</button>
+          </span>
+        </div>
+      </div>
+      <div *ngIf="selectedNav.id===2">
+          <div *ngIf="!newUser.length">
+              <p style="text-align: center">No One in your group</p>
+            </div>
+            <div *ngFor="let user of newUser; let i = index;" class="user-list">
+              <span>
+                {{user.name}}
+              </span>
+              <span>
+                {{user.email}}
+              </span>
+              <span *ngIf="userStatus==='ADMIN'">
+                <button (click)="markAsLeader(user, i)" 
+                class="btn btn-primary pull-right">
+                  Add as {{user.status==='LEADER'?  'Member': 'Leader'}}
+                </button>
+              </span>
+            </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -11,6 +11,10 @@ const bookingSchema = new Schema({
   },
   end_time: {
     type: Number,
+  },
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
 })
 

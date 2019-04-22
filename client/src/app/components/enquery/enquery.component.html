@@ -1,11 +1,14 @@
 <ng-template *ngIf="rooms.length>0; then data else noData "></ng-template>
 
 <ng-template #noData>
-  <p>Please Search</p>
+
+    <p style="width: 100%; text-align: center;">Please Search</p>
+
+ 
 </ng-template>
 <ng-template #data>
     <div class="container">
-        <table class="table">
+        <table class="mytable">
           <thead>
             <tr>
               <th></th>

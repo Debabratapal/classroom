@@ -1,7 +1,9 @@
 const router = require('express').Router()
 const Booking = require('../model/booking');
 const Room = require('../model/room');
+const User = require('../model/user');
 const getBookingTableData = require('../helper/index');
+const sendEmail = require('../helper/mailer');
 
 router.get('/', (req, res) => {
  console.log(req.query);
@@ -65,6 +67,15 @@ router.post('/', (req, res) => {
   const body = req.body;
   let booking = new Booking(body);
   booking.save().then(data => {
+    User.findOne({_id:data.user_id})
+    .populate('user_group', 'email')
+    .then(result => {
+      let emailIds = result.user_group.map(el => el.email);
+      console.log(emailIds);
+      sendEmail({
+        to: emailIds,
+      })
+    })
     res.json({status: true, data})
   })
 })

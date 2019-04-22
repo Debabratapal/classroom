@@ -7,9 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AddRoomComponent } from './components/add-room/add-room.component';
 import { AddTeamLeaderComponent } from './components/add-team-leader/add-team-leader.component';
 import { BookingViewComponent } from './components/booking-view/booking-view.component';
-import { CalenderComponent } from './components/calender/calender.component';
-import { CardsComponent } from './components/cards/cards.component';
-import { CardComponent } from './components/card/card.component';
+import { RoomBookingComponent } from './components/room-booking/room-booking.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
@@ -18,9 +16,7 @@ const routes: Routes = [
     {path: '', component: BookingViewComponent},
     {path: 'add_rooms', component: AddRoomComponent},
     {path: 'add_team_leader', component: AddTeamLeaderComponent},
-    {path: 'cal', component: CalenderComponent},
-    {path: 'card', component: CardsComponent},
-    {path: 'cardp', component: CardComponent}
+    {path: 'enquiry', component: RoomBookingComponent}
   ]},
  
 ];

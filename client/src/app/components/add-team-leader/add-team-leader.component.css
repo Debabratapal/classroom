@@ -1,0 +1,22 @@
+.container-header {
+  margin: 50px 0px;
+}
+
+.list {
+  cursor: pointer;
+}
+
+.user-list {
+  width: 100%;
+  border: 1px solid #ccd;
+  border-radius: 3px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.user-list span {
+  min-width: 33%;
+  padding: 0 1rem;
+  vertical-align: middle;
+}

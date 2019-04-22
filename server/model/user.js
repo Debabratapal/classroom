@@ -15,10 +15,18 @@ const userSchema = Schema({
   approved: {
     type: Boolean
   },
+  status: {
+    type: String,
+    default: 'NEW'
+  },
   user_type: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'UserType'
-  }
+  },
+  user_group: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }]
 });
 
 module.exports = mongoose.model('User', userSchema);
