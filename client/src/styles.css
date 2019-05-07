@@ -6,7 +6,7 @@ body {
 
 
 .form-section {
-  width: 23%;
+  min-width: 23%;
   border-radius: 10px;
   position: absolute;
   top: 40%;
@@ -15,6 +15,7 @@ body {
   background-color: rgba(0,0,0,0.8);
   padding: 2rem 1rem;
 }
+
 
 .form-section{
   display: flex;
@@ -47,7 +48,7 @@ body {
 
 
 .form-section img {
-  width: 90px;
+  width: 30%;
   border-radius: 50%;
   position: absolute;
   top: -6px;
@@ -78,3 +79,15 @@ body {
   background-color: rgb(236, 1, 1);
   transition: 0.3s;
 }
+
+@media (max-width:333px) {
+  
+  .form-section {
+    min-width: 76%;
+  }
+
+  .form-section img {
+    width: 28%;
+  }
+}
+

@@ -39,11 +39,10 @@ export class BookngService {
   }
 
   getEnqueryTable(data) {
-
     this.http.post<any[]>(`${baseUrl}/api/booking/enquery`, data)
     .subscribe(data => {
       this.enquiry = data;
-      this.enquiryChange.next(this.enquiry)
+      this.enquiryChange.next(this.enquiry.slice())
     })
   }
 

@@ -1,40 +1,27 @@
-const nodemailer = require('nodemailer');
-const sgTransport = require('nodemailer-sendgrid-transport');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey('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');
 
-const options = {
-  auth: {
-    api_key: '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'
+const sendMail = msg => {
+console.log('hiiiiiiiiii');
+let meta = {
+  params: {
+    from : {email:'paldebabrata82@gmail.com', name: 'Monish'},
+    subject: 'Sending with SendGrid is Fun',
+    html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    text: 'and easy to do anywhere, even with Node.js',
   }
+
+}
+//AKIATN7X37IPH3HJC2UR
+///MbZXNLh2/3AHTDsnbBvj1W1pnZLWuJu/JA+k85zY
+
+sendEmail(meta, cb)
+
+} 
+
+const sendEmail = (meta, cb) => {
+  sgMail.send(meta)
 }
 
-var client = nodemailer.createTransport(sgTransport(options));
 
-
-var email = {
-  from: 'paldebabrata82@gmail.com',
-  to: 'mr.walrus@foo.com',
-  text: 'Hello world',
-  html: '<b>Hello world</b>'
-};
-
-const sendEmail = (body) => {
-
-  let email = {
-    from: 'monish.das57@gmail.com',
-    to: body.to,
-    subject: 'You Have a Meeting',
-    text: 'Hello world',
-    html: '<b>Hello world</b>'
-  }
-  client.sendMail(email, function (err, info) {
-    if (err) {
-      console.log(err);
-      
-    }
-    else {
-      console.log('Message sent: ' + info.response);
-    }
-  });
-}
-
-module.exports = sendEmail;
+module.exports = sendMail;

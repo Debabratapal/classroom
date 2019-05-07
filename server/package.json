@@ -9,6 +9,8 @@
   "author": "\"Monish Das\"",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
+    "aws-sdk": "^2.447.0",
     "bcrypt": "^3.0.4",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",

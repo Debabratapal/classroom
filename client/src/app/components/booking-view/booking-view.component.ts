@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { timeout } from 'q';
 import { Subscription } from 'rxjs';
 import { BookngService } from 'src/app/services/booking.service';
@@ -8,7 +8,7 @@ import { BookngService } from 'src/app/services/booking.service';
   templateUrl: './booking-view.component.html',
   styleUrls: ['./booking-view.component.css']
 })
-export class BookingViewComponent implements OnInit {
+export class BookingViewComponent implements OnInit, OnDestroy {
   times = [];
   show:Boolean;
 
@@ -27,6 +27,10 @@ export class BookingViewComponent implements OnInit {
     })
 
     
+  }
+
+  ngOnDestroy() {
+    this.bookingChangeListener.unsubscribe();
   }
 
   getHeader() {

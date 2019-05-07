@@ -3,7 +3,8 @@ const Booking = require('../model/booking');
 const Room = require('../model/room');
 const User = require('../model/user');
 const getBookingTableData = require('../helper/index');
-const sendEmail = require('../helper/mailer');
+const sendMail  = require('../helper/mailer');
+const messanger = require('../helper/messanger');
 
 router.get('/', (req, res) => {
  console.log(req.query);
@@ -68,13 +69,18 @@ router.post('/', (req, res) => {
   let booking = new Booking(body);
   booking.save().then(data => {
     User.findOne({_id:data.user_id})
-    .populate('user_group', 'email')
+    .populate({path:'user_group', field:'email mobile'})
     .then(result => {
-      let emailIds = result.user_group.map(el => el.email);
-      console.log(emailIds);
-      sendEmail({
-        to: emailIds,
+      console.log(result);
+      
+      // let emailIds = result.user_group.map(el => el.email);
+      let mobiles = result.user_group.map(el => el.mobile);
+      console.log(mobiles);
+      messanger({
+        message:'you have a meeting with '+result.name+'at room name: floor number:https://www.google.com/maps/@12.9172454,77.6112666,15z',
+        mobile:mobiles
       })
+        let msg= 'you have a meeting with '+result.name+'at room name: floor number:https://www.google.com/maps/@12.9172454,77.6112666,15z'
     })
     res.json({status: true, data})
   })
@@ -90,8 +96,9 @@ router.post('/enquery', (req, res) => {
   for(let i of features) {
     featureObj[i] = true;
   }
-  console.log(body);
-  
+  // {
+  // $or: []
+  // }
   let query = {
     room_capacity:{
       $gte: body.room_capacity,
@@ -108,17 +115,21 @@ router.post('/enquery', (req, res) => {
   let roomList;
   Room.find(query)
   .then(room => {
-    console.log(room);
     //find the room
+    console.log(room.length);
     if(room.length === 0) {
-      return res.json({msg: "no rooms", room: []})
+      return {msg: "no rooms", room: []}
     }
+    
     const roomIds = room.map(el => el._id)
     rooms = roomIds;
     roomList = room;
     return roomIds;
   }) 
   .then(rooms => {
+    if(rooms.room && !rooms.room.length) {
+      return rooms
+    }
     let startTime = body.time;
     let endTime = new Date(startTime);
     endTime.setHours(23);
@@ -132,35 +143,72 @@ router.post('/enquery', (req, res) => {
         $lte: endTime,
       }
     } 
-    
+    console.log(query2);
     return Booking.find(query2).populate({path:'room'})
     
   })
   .then(bookings => {
+
+    if(bookings.room && !bookings.room.length) {
+      return res.json(bookings)
+    }
     console.log(bookings);
-    
     if(bookings.length === 0) {
       let emptyRoom = roomList.map(el => {
-        console.log(el);
-        
         return {
           room: {
             _id: el._id,
-            room_name: el.room_name
+            room_name: el.room_name,
+            room_capacity: el.room_capacity,
+            floor: el.floor,
           },
           booking_times: [],
 
         }
       })
-      console.log(emptyRoom);
       
       return res.send(emptyRoom)
     }
 
-    let data = getBookingTableData(bookings);
-    console.log(data);
+
     
+    let data = getBookingTableData(bookings);
+
+
+    if(data.length < roomList.length) {
+      let rooms = [];
+      for(let d of data) {
+        rooms.push(d.room.room_name);
+      }
+      console.log(rooms);
+      
+      let emptyrooms = [];
+      console.log(roomList);
+      
+      for(let r of roomList) {
+        if(!rooms.includes(r.room_name)) {
+          emptyrooms.push(r);
+        }
+      }
+      emptyrooms = emptyrooms.map(el => {
+        return {
+          room: {
+            _id: el._id,
+            room_name: el.room_name,
+            room_capacity: el.room_capacity,
+            floor: el.floor,
+          },
+          booking_times: [],
+
+        }
+      })
+      data.push(...emptyrooms)
+    }
+
+    
+    console.log("dataaaaaaaaaaaaaaaaaaaaa",JSON.stringify(data, undefined,2));
     res.send(data);
+    
   })
   .catch(err => {
     console.log(err);

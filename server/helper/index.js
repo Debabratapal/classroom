@@ -12,7 +12,9 @@ const getBookingTableData = (data) => {
       _id: el._id,
       room: {
         _id: el.room._id,
-        room_name: el.room.room_name
+        room_name: el.room.room_name,
+        room_capacity: el.room.room_capacity,
+        floor: el.room.floor,
       },
       booking_times,
       start_time: el.start_time

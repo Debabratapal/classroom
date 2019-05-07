@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { SignupService } from '../../services/signup.service';
 import { Router } from '@angular/router';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-signup',
@@ -19,6 +18,7 @@ export class SignupComponent implements OnInit {
     this.signUpForm = new FormGroup({
       'name': new FormControl(null),
       'email': new FormControl(null),
+      'mobile': new FormControl(null),
       'department': new FormControl(null),
       'password': new FormControl(null),
     })
@@ -30,7 +30,8 @@ export class SignupComponent implements OnInit {
     const user = {
       name: this.signUpForm.value.name,
       email: this.signUpForm.value.email,
-      password: this.signUpForm.value.password
+      password: this.signUpForm.value.password,
+      mobile: this.signUpForm.value.mobile,
     }
 
     this.signup.signup(user);

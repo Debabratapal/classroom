@@ -7,7 +7,7 @@
  
 </ng-template>
 <ng-template #data>
-    <div class="container">
+    <!-- <div class="container">
         <table class="mytable">
           <thead>
             <tr>
@@ -20,7 +20,7 @@
               <th>{{room.room.room_name}}</th>
               <td 
                 *ngFor="let time of room.booking_times; let i=index;" 
-                [ngStyle]="{backgroundColor: time? 'red':'white'}" 
+                [ngStyle]="{backgroundColor: time? 'red':'green'}" 
                 style="color:white"
                 (click)="boxClicked(time, i, room.booking_times, room.room)">
                 {{time ? 'booked':''}}
@@ -28,6 +28,31 @@
             </tr>
           </tbody>
         </table>
+      </div> -->
+
+      <div *ngFor="let room of rooms" class="rooms">
+        <div class="room-header">
+          <h1>Start a Meeting</h1>
+        </div>
+        <div class="room-info">
+          <div>Room Name: {{room.room.room_name}}</div>
+          <div>Room capacity: {{room.room.room_capacity}}</div>
+          <div>Room Floor: {{room.room.floor}}</div>
+        </div>
+        <div class="booking-info">
+          <div class="dots-container">
+              <div *ngFor="let time of room.booking_times; let i=index;" 
+              [ngStyle]="{backgroundColor: time? 'red':'green'}" 
+              class="dots">
+              {{i+10}}
+            </div>
+          
+          </div>
+          <button (click)="boxClicked(time, i, room.booking_times, room.room)">
+              book now
+          </button>
+        </div>
+       
       </div>
 </ng-template>
 

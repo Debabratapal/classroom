@@ -32,14 +32,8 @@ export class NavbarComponent implements OnInit{
     this.userStatus = user.status;
   }
 
-  dashboardClicked() {
+  toggle() {
     this.open = !this.open;
-  }
-
-  dashboardItemClicked(i) {
-    this.dashboardClicked();
-    let link = this.dashboardItems[i].link;
-    this.router.navigate([link], { relativeTo: this.route })
   }
 
   logout() {

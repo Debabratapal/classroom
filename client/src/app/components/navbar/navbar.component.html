@@ -1,4 +1,4 @@
-<div class="navbar">
+<!-- <div class="navbar">
   <div class="container">
     <div class="nav_header">
       <a routerLink='/home'>
@@ -10,17 +10,49 @@
         <a routerLink="/home" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Home</a>
       </div>
       <div *ngIf="userStatus==='ADMIN'|| userStatus==='LEADER'">
-        <a routerLink="/home/enquiry" routerLinkActive="active">Enquiry</a>
+        <a class="nav-link" routerLink="/home/enquiry" routerLinkActive="active">Enquiry</a>
       </div>
       <div *ngIf="userStatus==='ADMIN'">
-        <a routerLink="/home/add_rooms" routerLinkActive="active">Add Room</a>
+        <a class="nav-link" routerLink="/home/add_rooms" routerLinkActive="active">Add Room</a>
       </div>
       <div *ngIf="userStatus==='ADMIN' || userStatus==='LEADER'">
-        <a routerLink="/home/add_team_leader" routerLinkActive="active">Add Member</a>
+        <a class="nav-link" routerLink="/home/add_team_leader" routerLinkActive="active">Add Member</a>
       </div>
       <div>
         <a (click)="logout()" style="cursor: pointer"> Logout</a>
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<!-- bootstrap -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+  
+    <a class="navbar-brand"  style="font-size: 28px"routerLink='/home'>Easy Booking</a>
+  <button (click)="toggle()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" [class.show]="open" id="navbarSupportedContent" >
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" (click)="toggle()">
+          <a class="nav-link" routerLink="/home" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Home</a>
+      </li>
+      <li class="nav-item" (click)="toggle()" *ngIf="userStatus==='ADMIN'|| userStatus==='LEADER'">
+          <a class="nav-link" routerLink="/home/enquiry" routerLinkActive="active">Enquiry</a>
+      </li>
+      <li class="nav-item" (click)="toggle()"  *ngIf="userStatus==='ADMIN'">
+          <a class="nav-link" routerLink="/home/add_rooms" routerLinkActive="active">Add Room</a>
+      </li>
+      <li class="nav-item" (click)="toggle()" *ngIf="userStatus==='ADMIN' || userStatus==='LEADER'">
+          <a class="nav-link" routerLink="/home/add_team_leader" routerLinkActive="active">Add Member</a>
+      </li>
+      <li class="nav-item" (click)="toggle()">
+          <a class="nav-link" (click)="logout()" style="cursor: pointer">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>

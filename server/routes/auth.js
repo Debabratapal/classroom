@@ -13,6 +13,7 @@ router.post('/signup', (req, res, next) => {
   let user = new User({
     name: req.body.name,
     email: req.body.email,
+    mobile: '+91'+req.body.mobile,
   })
   bcrypt.genSalt(5)
   .then(salt => {

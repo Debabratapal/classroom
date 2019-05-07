@@ -10,3 +10,62 @@ table, th ,td {
 th, td {
   padding: 0.8rem;
 }
+
+
+.rooms {
+  width: 100%;
+  /* height: 250px; */
+  margin-bottom: 1rem;
+  color: #ffffff;
+  padding: 1rem;
+  font-size: 15px;
+  border-radius: 5px;
+  background: #222;
+}
+
+.booking-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.room-header {
+  color: #ff812d;
+  text-transform: uppercase;
+}
+.room-header h1 {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.room-info {
+  background: #2d2d2d;
+  border-radius: 5px;
+  padding: 1rem;
+  
+}
+
+.rooms button {
+  margin-top: 1rem;
+  background: transparent;
+  border: 1px solid #ff812d;
+  color: #ff812d;
+  text-transform: uppercase;
+  font-size: 14px;
+  width: 125px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.dots-container {
+  display: flex;
+  margin-top: 1rem;
+
+}
+
+.dots {
+  width: 30px;
+  text-align: center;
+  height: 25px;
+  border: 1px solid #222;
+}

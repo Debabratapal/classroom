@@ -42,12 +42,13 @@ export class RoomBookingComponent implements OnInit {
   }
 
   selectedTime(event) {
-    console.log(event);
     this.time=+event;
   }
 
   onSubmit() {
-    console.log(this.enquiryForm.value);
+    if(!this.enquiryForm.value.capacity) {
+      return
+    }
 
     let allFeatures = this.enquiryForm.value.features;
     let features = []
@@ -62,8 +63,6 @@ export class RoomBookingComponent implements OnInit {
       features,
       time: this.time
     }
-
-    console.log(data);
     this.bookingService.getEnqueryTable(data);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { BookngService } from 'src/app/services/booking.service';
 import { Subscription } from 'rxjs';
 
@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './enquery.component.html',
   styleUrls: ['./enquery.component.css']
 })
-export class EnqueryComponent implements OnInit {
+export class EnqueryComponent implements OnInit, OnDestroy {
   bookingChange:Subscription;
  
   rooms = [];
@@ -18,23 +18,20 @@ export class EnqueryComponent implements OnInit {
   constructor(private bookingService: BookngService) { }
 
   ngOnInit() {
-    this.getHeader();
     this.bookingChange = this.bookingService.getEnqueryChange()
     .subscribe((data: any[]) => {
-      console.log(data);
       
-      this.rooms = data;
-    
-      
+      this.rooms = data.slice();
       this.makeRoomForUI();
+      
+      
     })
   }
 
-  getHeader() {
-    for(let i=10; i<21; i++) {
-      this.times.push(`${i}:00`);
-    }
+  ngOnDestroy() {
+    this.bookingChange.unsubscribe();
   }
+ 
   makeRoomForUI() {
 
     this.rooms.forEach((el, i) => {
@@ -50,19 +47,15 @@ export class EnqueryComponent implements OnInit {
       }
     }) 
    
-    console.log(this.rooms);
   }
 
   boxClicked(time, i, roomTimes, room) {
     if(time) {
       return
     }
-    console.log(room,roomTimes, i);
-    console.log("good to go");
    this.bookingService.timeTransfer(roomTimes);
     this.show = true;
     this.roomId = room._id;
-    console.log(this.roomId);
   }
 
 

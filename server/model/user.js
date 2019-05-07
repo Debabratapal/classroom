@@ -9,6 +9,9 @@ const userSchema = Schema({
   password: {
     type: String
   },
+  mobile: {
+    type: String,
+  },
   name: {
     type: String
   },
