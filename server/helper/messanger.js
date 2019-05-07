@@ -43,7 +43,6 @@ const messenger = (req, callback) => {
   })
 
   Promise.all(promise).then(data => {
-    // console.log((data));
     console.log(JSON.stringify(data, undefined, 2));
     
   })
