@@ -3,10 +3,10 @@ const AWS = require('aws-sdk');
 let sns = new AWS.SNS({
   apiVersion: '2010-03-31',
   credentials: {
-    accessKeyId: 'AKIATN7X37IPP2QTHDBE',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIATN7X37IPKXYREKG6',
+    secretAccessKey: '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'
   },
-  region: 'us-west-2'
+  region: 'us-east-1'
 });
 //OV/2fhobuMdz/TTNOS0xKA7sF/2rTy08hG1g28I4
 //AKIATN7X37IPP2QTHDBE
@@ -36,6 +36,10 @@ const messenger = (req, callback) => {
         .catch(err => {
           resolve(err);
         })
+      })
+      .catch(err => {
+        console.log(err);
+        
       })
       
     })

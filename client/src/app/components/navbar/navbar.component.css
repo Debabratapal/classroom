@@ -5,7 +5,9 @@
 }
 
 @media (min-width:500px) {
-  
+  .bg-dark {
+    width: 200%;
+  }
 }
 
 .active {
