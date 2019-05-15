@@ -8,8 +8,6 @@ let sns = new AWS.SNS({
   },
   region: 'us-east-1'
 });
-//OV/2fhobuMdz/TTNOS0xKA7sF/2rTy08hG1g28I4
-//AKIATN7X37IPP2QTHDBE
 
 const messenger = (req, callback) => {
   console.log(req);
