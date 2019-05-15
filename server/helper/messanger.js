@@ -3,8 +3,8 @@ const AWS = require('aws-sdk');
 let sns = new AWS.SNS({
   apiVersion: '2010-03-31',
   credentials: {
-    accessKeyId: 'AKIATN7X37IPKXYREKG6',
-    secretAccessKey: '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'
+    accessKeyId: '',
+    secretAccessKey: ''
   },
   region: 'us-east-1'
 });
